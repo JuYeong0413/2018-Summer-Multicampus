@@ -4,7 +4,7 @@ public class StackTest {
 	public static void main(String[] args) {
 		MyStack stack = new MyStack(10);
 		if(stack.isEmpty()) {
-			System.out.println("½ºÅÃÀÌ ºñ¾îÀÖ½À´Ï´Ù.");
+			System.out.println("ìŠ¤íƒì´ ë¹„ì–´ìˆìŠµë‹ˆë‹¤.");
 		}
 		
 		for(int i = 1; i <= 10; i++) {
@@ -12,14 +12,14 @@ public class StackTest {
 		}
 		
 		if(stack.isFull()) {
-			System.out.println("½ºÅÃÀÌ °¡µæ Ã¡½À´Ï´Ù.");
+			System.out.println("ìŠ¤íƒì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.");
 		}
 		
-		System.out.println("ÃÖ»óÀ§ ¼ıÀÚ : " + stack.top());
-		System.out.println("ÃÖ»óÀ§¿¡¼­ ²¨³½ ¼ıÀÚ : " + stack.pop());
-		System.out.println("ÃÖ»óÀ§¿¡¼­ ²¨³½ ¼ıÀÚ : " + stack.pop());
+		System.out.println("ìµœìƒìœ„ ìˆ«ì : " + stack.top());
+		System.out.println("ìµœìƒìœ„ì—ì„œ êº¼ë‚¸ ìˆ«ì : " + stack.pop());
+		System.out.println("ìµœìƒìœ„ì—ì„œ êº¼ë‚¸ ìˆ«ì : " + stack.pop());
 		System.out.println("");
-		System.out.println("== ½ºÅÃ ¸®½ºÆ® ==");
+		System.out.println("== ìŠ¤íƒ ë¦¬ìŠ¤íŠ¸ ==");
 		for(int i = 1; i <= 10; i++) {
 			int num = stack.pop();
 			if(num != -1)
@@ -52,7 +52,7 @@ class MyStack {
 	public int pop() {
 		int num;
 		
-		if(index == -1) return -1; // ²¨³¾ ¼ıÀÚ°¡ ¾ø´Â °æ¿ì
+		if(index == -1) return -1; // êº¼ë‚¼ ìˆ«ìê°€ ì—†ëŠ” ê²½ìš°
 		else {
 			num = stack[index];
 			stack[index] = 0;
@@ -62,13 +62,16 @@ class MyStack {
 	}
 	
 	public int top() {
-		if(index == -1) return -1; // ²¨³¾ ¼ıÀÚ°¡ ¾ø´Â °æ¿ì
+		if(index == -1) return -1; // êº¼ë‚¼ ìˆ«ìê°€ ì—†ëŠ” ê²½ìš°
 		else return stack[index];
 	}
 	
 	public void push(int n) {
-		index++;
-		stack[index] = n;
+		if(isFull()) System.out.println("ìŠ¤íƒì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.");
+		else {
+			index++;
+			stack[index] = n;
+		}
 	}
 	
 	public boolean isEmpty() {
