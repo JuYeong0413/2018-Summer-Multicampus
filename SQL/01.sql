@@ -255,7 +255,7 @@ VALUES (8002, '홍길자', '사무', 200000, 202, '인천'); -- ubmu 컬럼은 '
 INSERT INTO sawon ( sabun, sawon_name, ubmu, buseo, jiyeok )
 VALUES (8003, '홍길순', '개발', 111, '대전'); -- buseo 테이블의 buseo_no에 111은 없음
 INSERT INTO sawon ( sabun, sawon_name, weolgub, jiyeok )
-VALUES (8004, '홍길석', 12345678, '서울'); -- weolgub은 정수형 8자리까지 입력 가능
+VALUES (8004, '홍길석', 12345678, '서울'); -- weolgub은 정수형 7자리까지 입력 가능
 INSERT INTO sawon ( sabun, sawon_name, ubmu, buseo, jiyeok )
 VALUES (8005, '홍길철', '유지보수', 303, '판교');
 -- 11. sawon 테이블에서 jiyeok 컬럼을 제거
