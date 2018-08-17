@@ -1,33 +1,33 @@
 SELECT * FROM employees;
 
--- 1. EMPLOYEES Å×ÀÌºí¿¡¼­ »ç¿ø ÀÌ¸§À» first_name°ú last_name¸¦ ÇÕÃÄ full_nameÀ¸·Î Ãâ·Â
+-- 1. EMPLOYEES í…Œì´ë¸”ì—ì„œ ì‚¬ì› ì´ë¦„ì„ first_nameê³¼ last_nameë¥¼ í•©ì³ full_nameìœ¼ë¡œ ì¶œë ¥
 SELECT CONCAT(first_name || ' ', last_name) full_name
 FROM employees;
 
--- 2. ºÎ¼­¹øÈ£°¡ 30(±¸¸ÅºÎ¼­)ÀÌ°í ±Ş¿© 10000¹Ì¸¸ÀÎ »ç¿øÀÇ full_name°ú ¿ù±Ş,ºÎ¼­¹øÈ£¸¦ Ãâ·Â [5°³]
+-- 2. ë¶€ì„œë²ˆí˜¸ê°€ 30(êµ¬ë§¤ë¶€ì„œ)ì´ê³  ê¸‰ì—¬ 10000ë¯¸ë§Œì¸ ì‚¬ì›ì˜ full_nameê³¼ ì›”ê¸‰,ë¶€ì„œë²ˆí˜¸ë¥¼ ì¶œë ¥ [5ê°œ]
 SELECT CONCAT(first_name || ' ', last_name) full_name, salary, department_id
 FROM employees
 WHERE department_id = 30 and salary < 10000;
 
--- 3. ºÎ¼­¹øÈ£°¡ 30ÀÌ°í ±Ş¿©°¡ 10000´Ş·¯ ÀÌÇÏ¸¦ ¹Ş´Â 2006³âµµ ÀÌÀü ÀÔ»çÇÑ »ç¿øÀÇ full_nameÀ» Ãâ·Â [3°³]
+-- 3. ë¶€ì„œë²ˆí˜¸ê°€ 30ì´ê³  ê¸‰ì—¬ê°€ 10000ë‹¬ëŸ¬ ì´í•˜ë¥¼ ë°›ëŠ” 2006ë…„ë„ ì´ì „ ì…ì‚¬í•œ ì‚¬ì›ì˜ full_nameì„ ì¶œë ¥ [3ê°œ]
 SELECT CONCAT(first_name || ' ', last_name) full_name
 FROM employees
 WHERE department_id = 30 and salary < 10000 and SUBSTR(to_char(hire_date), 1, 2) < 06;
 -- WHERE department_id = 30 and salary < 10000 and to_char(hire_date, 'YYYY') < 2006;
 
--- 4. ÀüÈ­¹øÈ£¿¡¼­ 590À¸·Î ½ÃÀÛÇÏ´Â »ç¿ø¸í°ú ÀüÈ­¹øÈ£¸¦ Á¶È¸ [5°³]
+-- 4. ì „í™”ë²ˆí˜¸ì—ì„œ 590ìœ¼ë¡œ ì‹œì‘í•˜ëŠ” ì‚¬ì›ëª…ê³¼ ì „í™”ë²ˆí˜¸ë¥¼ ì¡°íšŒ [5ê°œ]
 SELECT first_name, last_name, phone_number
 FROM employees
 WHERE SUBSTR(phone_number, 1, 3) = 590;
 -- WHERE phone_number LIKE '590%';
 
--- 5. 2003³â¿¡ ÀÔ»çÇÑ »ç¿øµéÀÇ »ç¹ø, ÀÌ¸§, ÀÔ»çÀÏÀ» Ãâ·Â [6°³]
+-- 5. 2003ë…„ì— ì…ì‚¬í•œ ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì´ë¦„, ì…ì‚¬ì¼ì„ ì¶œë ¥ [6ê°œ]
 SELECT employee_id, first_name, last_name, hire_date
 FROM employees
 WHERE SUBSTR(to_char(hire_date), 1, 2) = 03;
 -- WHERE to_char(hire_date, 'YYYY') = 2003;
 
--- 6. Ä¿¹Ì¼ÇÀ» ¹Ş´Â »ç¿øµéÀÇ ¸í´ÜÀ» Ãâ·Â [35°³]
+-- 6. ì»¤ë¯¸ì…˜ì„ ë°›ëŠ” ì‚¬ì›ë“¤ì˜ ëª…ë‹¨ì„ ì¶œë ¥ [35ê°œ]
 SELECT *
 FROM employees
 WHERE commission_pct IS NOT NULL;
