@@ -1,0 +1,20 @@
+select m.id, o.orderno,m.id, m.name, m.tel, m.addr, sum(g.price * o.count) sum, 
+	min(g.gname) ||' 외' || (count(o.count) -1) ||'개' list
+from ex_member m, ex_good g, ex_order o
+where m.id = o.id and g.gno = o.gno
+group by o.orderno, m.id, m.name, m.tel, m.addr;
+
+-- ----------------------------------------------------------------------------
+
+SELECT o.orderno, m.id, m.name, m.tel, m.addr, 
+		to_char(MAX(g.gname)||' 외 '||(COUNT(o.orderno)-1)||' 개')
+FROM ex_member m, ex_order o, ex_good g
+WHERE m.id=o.id AND g.gno=o.gno
+GROUP BY o.orderno, m.id, m.name, m.tel, m.addr;
+
+-- ----------------------------------------------------------------------------
+
+SELECT O.ORDERNO ,O.ID ,DECODE((COUNT(G.GNAME)-1),0,MAX(G.GNAME),MAX(G.GNAME)|| '외 '||(COUNT(G.GNAME)-1)||'개') AS 상품종류 , SUM(O.COUNT*G.PRICE) TOTAL
+FROM EX_ORDER O INNER JOIN EX_GOOD G ON O.GNO =G.GNO INNER JOIN EX_MEMBER M ON O.ID=M.ID
+GROUP BY O.ORDERNO ,O.ID 
+ORDER BY O.ORDERNO ASC;
